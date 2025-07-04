@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookies Demo</title>
+</head>
+<body>
+
+  <h2>Cookie Demo</h2>
+
+  <input type="text" id="cookieName" placeholder="Enter cookie name">
+  <input type="text" id="cookieValue" placeholder="Enter cookie value">
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="getCookie()">Get Cookie</button>
+  <button onclick="deleteCookie()">Delete Cookie</button>
+  <button onclick="showAllCookies()">Show All Cookies</button>
+
+  <p id="output"></p>
+
+  <script>
+    // Set cookie
+    function setCookie() {
+      const name = document.getElementById('cookieName').value;
+      const value = document.getElementById('cookieValue').value;
+      const days = 7; 
+      const expires = new Date();
+      expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/`;
+
+      alert(`Cookie set: ${name} = ${value}`);
+    }
+
+    // Get cookie
+    function getCookie() {
+      const name = document.getElementById('cookieName').value + "=";
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const cookies = decodedCookie.split(';');
+
+      for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i].trim();
+        if (c.indexOf(name) === 0) {
+          document.getElementById('output').textContent = `Cookie value: ${c.substring(name.length)}`;
+          return;
+        }
+      }
+      document.getElementById('output').textContent = "Cookie not found.";
+    }
+
+    // Delete cookie
+    function deleteCookie() {
+      const name = document.getElementById('cookieName').value;
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      alert(`Cookie "${name}" deleted.`);
+    }
+
+    // Show all cookies
+    function showAllCookies() {
+      const allCookies = document.cookie || "No cookies found.";
+      document.getElementById('output').textContent = `All cookies: ${allCookies}`;
+    }
+  </script>
+
+</body>
+</html>
