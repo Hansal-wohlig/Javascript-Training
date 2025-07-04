@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Local Storage - Full Demo</title>
+</head>
+<body>
+
+  <h2>Local Storage Demo</h2>
+
+  <input type="text" id="keyInput" placeholder="Enter key">
+  <input type="text" id="valueInput" placeholder="Enter value">
+  <button onclick="setItem()">Set Item</button>
+  <button onclick="getItem()">Get Item</button>
+  <button onclick="removeItem()">Remove Item</button>
+  <button onclick="clearStorage()">Clear All</button>
+  <button onclick="showKeys()">Show All Keys</button>
+
+  <p id="output"></p>
+
+  <script>
+    // Set an item in local storage
+    function setItem() {
+      const key = document.getElementById('keyInput').value;
+      const value = document.getElementById('valueInput').value;
+      localStorage.setItem(key, value);
+      alert(`Item set: ${key} = ${value}`);
+    }
+
+    // Get an item from local storage
+    function getItem() {
+      const key = document.getElementById('keyInput').value;
+      const value = localStorage.getItem(key);
+      document.getElementById('output').textContent = value !== null 
+        ? `Value for "${key}": ${value}` 
+        : `No value found for key: "${key}"`;
+    }
+
+    // Remove a specific item
+    function removeItem() {
+      const key = document.getElementById('keyInput').value;
+      localStorage.removeItem(key);
+      alert(`Item removed: ${key}`);
+    }
+
+    // Clear all items
+    function clearStorage() {
+      localStorage.clear();
+      alert("All items cleared from local storage.");
+    }
+
+    // Show all keys and their values
+    function showKeys() {
+      const output = document.getElementById('output');
+      output.innerHTML = "<strong>Stored Keys and Values:</strong><br>";
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); // Get key by index
+        const value = localStorage.getItem(key);
+        output.innerHTML += `${i + 1}. ${key} = ${value}<br>`;
+      }
+      if (localStorage.length === 0) {
+        output.textContent = "No items in local storage.";
+      }
+    }
+  </script>
+
+</body>
+</html>
