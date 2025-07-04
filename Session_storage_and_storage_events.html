@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Session & Local Storage Demo</title>
+</head>
+<body>
+
+  <h2>Session Storage Demo</h2>
+  <input type="text" id="sessionKey" placeholder="Enter key">
+  <input type="text" id="sessionValue" placeholder="Enter value">
+  <button onclick="saveToSession()">Save to Session Storage</button>
+  <button onclick="loadFromSession()">Load from Session Storage</button>
+
+  <h2>Local Storage Demo (Triggers Storage Event)</h2>
+  <input type="text" id="localKey" placeholder="Enter local key">
+  <input type="text" id="localValue" placeholder="Enter local value">
+  <button onclick="saveToLocal()">Save to Local Storage</button>
+
+  <p id="output"></p>
+
+  <script>
+    // Session Storage: Save
+    function saveToSession() {
+      const key = document.getElementById('sessionKey').value;
+      const value = document.getElementById('sessionValue').value;
+      sessionStorage.setItem(key, value);
+      alert(`Saved to sessionStorage: ${key} = ${value}`);
+    }
+
+    // Session Storage: Load
+    function loadFromSession() {
+      const key = document.getElementById('sessionKey').value;
+      const value = sessionStorage.getItem(key);
+      document.getElementById('output').textContent = value !== null
+        ? `Session value for "${key}": ${value}`
+        : `No session value for key "${key}".`;
+    }
+
+    // Local Storage: Save (to trigger storage event)
+    function saveToLocal() {
+      const key = document.getElementById('localKey').value;
+      const value = document.getElementById('localValue').value;
+      localStorage.setItem(key, value);
+      alert(`Saved to localStorage: ${key} = ${value}`);
+    }
+
+    // Listen for storage changes in other tabs/windows
+    window.addEventListener('storage', function(event) {
+      const message = `Storage Event:
+      Key: ${event.key}
+      Old Value: ${event.oldValue}
+      New Value: ${event.newValue}
+      Storage Area: ${event.storageArea === localStorage ? 'localStorage' : 'sessionStorage'}
+      URL: ${event.url}`;
+
+      console.log(message);
+      document.getElementById('output').textContent = message;
+    });
+  </script>
+
+</body>
+</html>
