@@ -147,3 +147,42 @@ form.addEventListener('submit', (e) => {
 // const parent = notePara.parentElement;
 // parent.style.backgroundColor = '#fff0f0';
 // parent.style.padding = '10px';
+
+
+
+// Create a button container
+const buttonContainer = document.createElement('div');
+buttonContainer.id = 'button-container';
+buttonContainer.style.marginTop = '30px';
+
+// Add 3 buttons
+['Save', 'Edit', 'Delete'].forEach(label => {
+  const btn = document.createElement('button');
+  btn.textContent = label;
+  btn.setAttribute('data-action', label.toLowerCase());
+  btn.style.marginRight = '10px';
+  buttonContainer.appendChild(btn);
+});
+
+// Append the container to the body
+document.body.appendChild(buttonContainer);
+
+// Event delegation on the container
+buttonContainer.addEventListener('click', (e) => {
+  if (e.target.tagName === 'BUTTON') {
+    const action = e.target.getAttribute('data-action');
+    switch (action) {
+      case 'save':
+        alert('Save button clicked!');
+        break;
+      case 'edit':
+        alert('Edit button clicked!');
+        break;
+      case 'delete':
+        alert('Delete button clicked!');
+        break;
+      default:
+        console.log('Unknown action');
+    }
+  }
+});
