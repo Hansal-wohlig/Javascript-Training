@@ -1,0 +1,14 @@
+{
+  "name": "unit-testing-demo",
+  "version": "1.0.0",
+  "description": "Demo project for unit testing with Jest",
+  "main": "demo.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
