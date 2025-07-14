@@ -9,8 +9,8 @@ app.use(express.static(path.join(__dirname,'public')))
 const transporter = nodemailer.createTransport({
     service:'gmail',
     auth:{
-        user:"hansal.bhangale@wohlig.com",
-        pass:"hydrogen@1"
+        user:"xyz",
+        pass:""
     }
 })
 
@@ -22,7 +22,7 @@ app.post('/send',async(req,res)=>{
 
     try{
         const info = await transporter.sendMail({
-            from:"hansal.bhangale@wohlig.com",
+            from:"xyz",
             to,
             subject,
             text:message
