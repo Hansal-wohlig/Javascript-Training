@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thank You!</title>
+</head>
+<body>
+  <h1>Thanks, <%= formData.name %>! 🎉</h1>
+
+  <p>We got your message:</p>
+  <blockquote>
+    <%- formData.message.replace(/</g,'&lt;') %>
+  </blockquote>
+
+  <p>We’ll reach you at <strong><%= formData.email %></strong>.</p>
+
+  <a href="/">⇐ Back to form</a>
+</body>
+</html>
