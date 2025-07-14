@@ -1,0 +1,29 @@
+<!DOCTYPE html>                                <!-- Define HTML5 document -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">                      <!-- Character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Emailer Demo</title>            <!-- Page title -->
+</head>
+<body>
+  <h1>Send an Email</h1>
+  <form action="/send" method="POST">         <!-- Form submits POST to /send -->
+    <label>
+      To:
+      <input type="email" name="to" required /> <!-- Recipient email field -->
+    </label>
+    <br />
+    <label>
+      Subject:
+      <input type="text" name="subject" required /> <!-- Email subject field -->
+    </label>
+    <br />
+    <label>
+      Message:
+      <textarea name="message" rows="6" required></textarea> <!-- Email message body -->
+    </label>
+    <br />
+    <button type="submit">Send Email</button>  <!-- Submit button -->
+  </form>
+</body>
+</html>
